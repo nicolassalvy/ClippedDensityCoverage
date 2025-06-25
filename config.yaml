@@ -1,0 +1,109 @@
+defaults:
+  - override hydra/job_logging: disabled
+  - override hydra/hydra_logging: disabled
+
+
+# TO CHANGE
+n_jobs: 24
+save_dir: res/
+data_dir: data/
+# END TO CHANGE
+
+
+# Save path
+save_path: ${save_dir}  # If you run many experiments you might want to use: ${save_dir}${now:%Y-%m-%d_%H}/
+
+# Data path
+dataset: CIFAR-10
+data_dir_dataset: ${data_dir}${dataset}/
+data_dir_png: ${data_dir_dataset}png/
+filtered_data_dir: ${data_dir_dataset}50000/
+data_dir_embeddings: ${data_dir_dataset}embed/
+embedding_file_name: reps_50000_dinov2_nimage-50000_test.npz
+data_path: ${data_dir_embeddings}${embedding_file_name}
+noise_path: ${data_dir}noise/embed/${embedding_file_name}
+gen_data_dir: ${data_dir}gen_${dataset}/
+model_name: LDM
+gen_data_file: ${gen_data_dir}${model_name}/embed/${embedding_file_name}
+
+# metrics k
+nearest_k: 5
+
+# synthetic test parameters
+N: 25000
+d: 32
+
+# number of repetitions of the tests
+n_repeat: 10
+
+# Which test to run
+toy_ood_both_proportion_test: False
+toy_ood_synthetic_proportion_test: False
+toy_simultaneous_mode_dropping_test: False
+toy_translation_test: False
+real_ood_both_proportion_test: False
+real_ood_synthetic_proportion_test: False
+real_simultaneous_mode_dropping_test: False
+
+metrics_of_interest:
+  # fidelity
+  - "Precision"
+  - "Density"
+  - "symPrecision"
+  - "P-precision"
+  - "PrecisionCover"
+  - "alpha-Precision"
+  - "TopP"
+  - "ClippedDensity"
+  # coverage
+  - "Recall"
+  - "Coverage"
+  - "symRecall"
+  - "P-recall"
+  - "RecallCover"
+  - "beta-Recall"
+  - "TopR"
+  - "ClippedCoverage"
+  # older implementations
+  # - "oldPrecision"
+  # - "oldRecall"
+  # - "oldDensity"
+  # - "oldCoverage"
+  # - "oldSymPrecision"
+  # - "oldSymRecall"
+  # - "oldPprecision"
+  # - "oldPrecall"
+  # - "oldPrecisionCover"
+  # - "oldRecallCover"
+
+
+metric_categories:
+  # fidelity
+  Precision: fidelity
+  Density: fidelity
+  symPrecision: fidelity
+  alpha-Precision: fidelity
+  TopP: fidelity
+  P-precision: fidelity
+  PrecisionCover: fidelity
+  ClippedDensity: fidelity
+  # coverage
+  Recall: coverage
+  Coverage: coverage
+  symRecall: coverage
+  beta-Recall: coverage
+  TopR: coverage
+  P-recall: coverage
+  RecallCover: coverage
+  ClippedCoverage: coverage
+  # older implementations
+  oldPrecision: fidelity
+  oldRecall: coverage
+  oldDensity: fidelity
+  oldCoverage: coverage
+  oldSymPrecision: fidelity
+  oldSymRecall: coverage
+  oldPrecisionCover: fidelity
+  oldRecallCover: coverage
+  oldPprecision: fidelity
+  oldPrecall: coverage
