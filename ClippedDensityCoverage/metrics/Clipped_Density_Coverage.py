@@ -117,7 +117,8 @@ class ClippedDensityCoverage:
 
         for idx, M_i in enumerate(range(K, M + 1)):
             j_values = np.arange(M_i + 1)
-            log_min = np.log(np.minimum(j_values, K))
+            with np.errstate(divide="ignore"):  # ignore log(0) warnings
+                log_min = np.log(np.minimum(j_values, K))
 
             log_binomial_coeff = log_binomial(M_i, j_values)
             if check_code and M_i == M:
@@ -149,7 +150,7 @@ class ClippedDensityCoverage:
         index = np.searchsorted(f_rank_values, y)
         return index / len(f_rank_values)
 
-    def ClippedCoverage(self, synthetic_data, **kwargs):
+    def ClippedCoverage(self, synthetic_data, check_code=False, **kwargs):
         synthetic_data_neighbors = synthetic_data.reshape(
             synthetic_data.shape[0], -1
         )
@@ -163,7 +164,7 @@ class ClippedDensityCoverage:
                 M=synthetic_data_neighbors.shape[0],
                 N=self.real_data_neighbors.shape[0],
                 K=self.K,
-                check_code=False,
+                check_code=check_code,
             )
 
         if self.distances_real is None:
