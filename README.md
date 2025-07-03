@@ -1,6 +1,6 @@
 # Enhanced Generative Model Evaluation with Clipped Density and Coverage
 
-This repository is the official implementation of [*Enhanced Generative Model Evaluation with Clipped Density and Coverage*](arxiv.org/abs/2507.01761).
+This repository is the official implementation of [*Enhanced Generative Model Evaluation with Clipped Density and Coverage*](https://arxiv.org/abs/2507.01761).
 
 ## Setup
 
