@@ -1,6 +1,6 @@
 # Enhanced Generative Model Evaluation with Clipped Density and Coverage
 
-This repository is the official implementation of *Enhanced Generative Model Evaluation with Clipped Density and Coverage*.
+This repository is the official implementation of the ICLR 2026 paper [*Enhanced Generative Model Evaluation with Clipped Density and Coverage*](https://arxiv.org/abs/2507.01761).
 
 ## Setup
 
@@ -92,20 +92,20 @@ python ClippedDensityCoverage/figures/fig2.py
 python ClippedDensityCoverage/figures/fig3.py N=50000 n_repeat=5
 ```
 
-### Figures 1, 4, 5, 14, 15, 17, 18, 19, 20
+### Figures 1, 4, 5, 26, 27, 28, 29, 30, 31
 
 Use the base command:
 ```bash
 python ClippedDensityCoverage/tests/launch_tests.py
 ```
 Append parameters specific to each figure:
--   **Figures 1, 4a, 17:** `real_ood_synthetic_proportion_test=True`
--   **Figures 4b, 18:** `real_simultaneous_mode_dropping_test=True metrics_of_interest="['Precision','Density','symPrecision','alpha-Precision','TopP','P-precision','PrecisionCover','ClippedDensity']"`
--   **Figures 4c, 5a, 19:** `real_ood_both_proportion_test=True`
--   **Figures 4d, 5b, 20:** `toy_translation_test=True n_repeat=5`
--   **Figures 14a, 15a:** `toy_ood_synthetic_proportion_test=True`
--   **Figures 14b:** `toy_simultaneous_mode_dropping_test=True metrics_of_interest="['Precision','Density','symPrecision','alpha-Precision','TopP','P-precision','PrecisionCover','ClippedDensity']"`
--   **Figures 14c, 15b:** `toy_ood_both_proportion_test=True`
+-   **Figures 1, 4a, 28:** `real_ood_synthetic_proportion_test=True`
+-   **Figures 4b, 29:** `real_simultaneous_mode_dropping_test=True metrics_of_interest=['Precision','Density','symPrecision','alpha-Precision','TopP','P-precision','PrecisionCover','ClippedDensity'] n_repeat=100`
+-   **Figures 4c, 5a, 30:** `real_ood_both_proportion_test=True`
+-   **Figures 4d, 5b, 31:** `toy_translation_test=True n_repeat=5`
+-   **Figures 26a, 27a:** `toy_ood_synthetic_proportion_test=True`
+-   **Figures 26b:** `toy_simultaneous_mode_dropping_test=True metrics_of_interest=['Precision','Density','symPrecision','alpha-Precision','TopP','P-precision','PrecisionCover','ClippedDensity']`
+-   **Figures 26c, 27b:** `toy_ood_both_proportion_test=True`
 
 ### Figures 6, 12, 13
 
@@ -115,8 +115,24 @@ python ClippedDensityCoverage/figures/fig6_compute.py dataset=<dataset_name>
 python ClippedDensityCoverage/figures/fig6_plot.py dataset=<dataset_name>
 ```
 
-### Figure 16
+### Figure 18
 
 ```bash
-python ClippedDensityCoverage/figures/fig16.py dataset=FFHQ model_name=LDM
+python ClippedDensityCoverage/figures/fig18.py dataset=FFHQ model_name=LDM
+```
+
+
+## Citation
+
+If you find this repository useful in your work, please cite:
+
+```bibtex
+@inproceedings{
+    salvy2026enhanced,
+    title={Enhanced Generative Model Evaluation with Clipped Density and Coverage},
+    author={Salvy, Nicolas and Talbot, Hugues and Thirion, Bertrand},
+    booktitle={The Fourteenth International Conference on Learning Representations},
+    year={2026},
+    url={https://arxiv.org/abs/2507.01761}
+}
 ```

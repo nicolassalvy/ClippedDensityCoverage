@@ -20,7 +20,7 @@ class ClippedDensityCoverage:
         self.distances_real = None
         self.indices_real = None
 
-    def ClippedDensity(self, synthetic_data):
+    def ClippedDensity(self, synthetic_data, can_exceed_one=False):
         synthetic_data_neighbors = synthetic_data.reshape(
             synthetic_data.shape[0], -1
         )
@@ -93,6 +93,8 @@ class ClippedDensityCoverage:
         real_fidelity_ratio = np.mean(real_appearance_ratio)
         fidelity_ratio /= real_fidelity_ratio
 
+        if can_exceed_one:
+            return fidelity_ratio
         return fidelity_ratio.clip(max=1)
 
     def _f_coverage(self, K, N, M, check_code=False):
