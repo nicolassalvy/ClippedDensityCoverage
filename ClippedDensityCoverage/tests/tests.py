@@ -658,6 +658,7 @@ def plot_simultaneous_mode_dropping(
         ideal_x_norm = kept_ratios
 
         for category in ["fidelity", "coverage"]:
+            ylim = None
             metrics_in_category = [
                 m
                 for i, m in enumerate(metrics_of_interest)
@@ -672,6 +673,7 @@ def plot_simultaneous_mode_dropping(
 
             if category == "fidelity":
                 ideal_y_norm = [reference_value_norm] * n_modes
+                ylim = (0, np.max(mean_results[i] + std_results[i]) * 1.05)
             elif (
                 category == "coverage"
             ):  # for toy data, otherwise the true class overlap is unknown
@@ -696,6 +698,7 @@ def plot_simultaneous_mode_dropping(
                 ),
                 ideal_x=ideal_x_norm,
                 ideal_y=ideal_y_norm,
+                ylim=ylim,
             )
 
 
